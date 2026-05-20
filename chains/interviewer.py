@@ -1,41 +1,67 @@
+#chains//interviewer.py
+
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_core.chat_history import BaseChatMessageHistory, InMemoryChatMessageHistory
 import os
 
 INTERVIEWER_SYSTEM_PROMPT = """You are an expert technical interviewer conducting a {interview_type} interview.
 
 Your role:
 - Ask one clear, focused question at a time
-- Questions should be appropriate for a {level} position
+- Reference previous answers when relevant
+- Build on the conversation naturally
 - Be professional but encouraging
-- After the candidate answers, provide brief acknowledgment before the next question
 
-Interview focus: {focus_area}
+Interview type: {interview_type}
+interviewer_style:{interviewer_style}
+Position level: {level}
+Focus area: {focus_area}
+total_questions:{total_questions}
 
-Current question number: {question_number} of {total_questions}
+Remember:
+You have access to the full conversation history.
+Use it to avoid repeating questions and ask relevant follow-ups.
 """
 
-interviewer_prompt = ChatPromptTemplate.from_messages([
-    ("system", INTERVIEWER_SYSTEM_PROMPT),
-    MessagesPlaceholder(variable_name="history", optional=True),
-    ("human", "{input}")
-])
 
-def create_interviewer_chain(
-        model: str = "gemini-2.5-flash",
-        temperature: float = 0.7
-):
-    """Creating the interviewer chain."""
+
+session_store: dict[str, InMemoryChatMessageHistory] = {}
+
+def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    """Get or create chat history for a session."""
+    if session_id not in session_store:
+        session_store[session_id] = InMemoryChatMessageHistory()
+    return session_store[session_id]
+
+def create_interviewer_with_history():
+    """Create interviewer with automatic history management."""
+
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", INTERVIEWER_SYSTEM_PROMPT),
+        MessagesPlaceholder(variable_name="history"),
+        ("human", "{input}")
+    ])
 
     llm = ChatOpenAI(
-        model=model,
-        temperature=temperature,
-        api_key=lambda: os.environ["GEMINI_API_KEY"],
-        base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+    model="gemini-2.5-flash",
+    api_key=lambda: os.environ["GEMINI_API_KEY"],
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
+    chain = prompt | llm | StrOutputParser()
 
+    # Wrap with history management
+    chain_with_history = RunnableWithMessageHistory(
+        chain,
+        get_session_history,
+        input_messages_key="input",
+        history_messages_key="history"
     )
 
-    chain = interviewer_prompt | llm | StrOutputParser()
+    return chain_with_history
 
-    return chain
+# Usage
+# The interviewer should be created and invoked by the application code.
+# Avoid running `create_interviewer_with_history()` at import time.

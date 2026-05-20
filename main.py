@@ -1,5 +1,7 @@
+
 from dotenv import load_dotenv
-from chains.interviewer import create_interviewer_chain
+from chains.interviewer import create_interviewer_with_history, get_session_history
+from chains.evaluator import create_evaluator_simple, create_report_generator
 
 load_dotenv()
 
@@ -16,48 +18,88 @@ INTERVIEW_TYPES = {
     "technical": """Test domain knowledge. Mix conceptual
         questions with practical scenarios."""
 }
+INTERVIEWER_STYLES = {
+    "friendly": "Be warm, encouraging, help candidates feel comfortable.",
+    "challenging": "Push back on answers, ask follow-ups, test depth.",
+    "neutral": "Professional and straightforward, minimal feedback."
+}
 
-def run_basic_interview():
-    interviewer = create_interviewer_chain()
+def run_interview_with_feedback():
+    interviewer = create_interviewer_with_history()
+    evaluator = create_evaluator_simple()
 
-    interview_mode = "technical"
+    session_id = "interview_001"
+    config = {"configurable": {"session_id": session_id}}
 
-    config = {
-        "interview_type": interview_mode,
-        "level":"Senoir",
-        "focus_area": "Python fundamentals, OOP, and best practices",
-        "total_questions": 5,
+    interview_config = {
+        "interview_type": "technical Python",
+        "level": "senior",
+        "focus_area": "Python internals"
     }
 
-    print("=" * 50)
-    print("AI Interview Coach - Basic Mode")
-    print("=" * 50)
-    print("Type 'quit' to exit\n")
+    scores = []
+    transcript = []
 
-    response = interviewer.invoke({
-        **config,
-        "question_number":1,
-        "input":"Start the interview with your first question"
-    })
-    print(f"Interviewer: {response}\n")
+    # Start interview
+    question = interviewer.invoke(
+        {**interview_config, "input": "Start the interview"},
+        config=config
+    )
+    print(f"\nInterviewer: {question}\n")
+    current_question = question
 
-    question_num = 1
-    while question_num < config['total_questions']:
-        answer = input("You : " )
+    for i in range(5):  # 5 questions
+        answer = input("You: ")
         if answer.lower() == 'quit':
             break
-        question_num += 1
 
-    
-        response = interviewer.invoke({
-            **config,
-            "question_number":question_num,
-            "input":f"The candidate answered: {answer}\n\nAcknowledge briefly and ask question {question_num}."
+        # Evaluate the answer
+        feedback = evaluator.invoke({
+            "question": current_question,
+            "level": "senior",
+            "answer": answer
         })
 
-        print(f"\nInterviewer : {response}\n")
-    
-    print("\nInterview Complete, thankyou for participating!")
+        scores.append(feedback.score)
+        transcript.append(f"Q: {current_question}\nA: {answer}")
 
-if __name__=="__main__":
-    run_basic_interview()
+        # Show score
+        print(f"\n[Score: {feedback.score}/10 - {feedback.understanding}]")
+        if feedback.improvements:
+            print(f"[Tip: {feedback.improvements[0]}]")
+
+        # Get next question
+        next_input = f"The candidate answered: {answer}"
+        if feedback.follow_up_question:
+            next_input += f"\n\nConsider asking this follow-up: {feedback.follow_up_question}"
+
+        question = interviewer.invoke(
+            {**interview_config, "input": next_input},
+            config=config
+        )
+        print(f"\nInterviewer: {question}\n")
+        current_question = question
+
+    # Generate final report
+    print("\n" + "=" * 50)
+    print("INTERVIEW REPORT")
+    print("=" * 50)
+
+    report_gen = create_report_generator()
+    report = report_gen.invoke({
+        "position": "Senior Python Developer",
+        "level": "senior",
+        "interview_type": "technical",
+        "transcript": "\n\n".join(transcript),
+        "scores": scores
+    })
+
+    print(f"\nOverall Score: {report.overall_score}/10")
+    print(f"Recommendation: {report.recommendation.upper()}")
+    print(f"\nSummary: {report.summary}")
+    print(f"\nStrengths:")
+    for s in report.strengths:
+        print(f"  ✓ {s}")
+    print(f"\nAreas to Improve:")
+    for a in report.areas_to_improve:
+        print(f"  • {a}")
