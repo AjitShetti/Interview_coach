@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 from typing import List, Optional
 import os
 
@@ -8,7 +8,7 @@ class AnswerFeedback(BaseModel):
     """Structured Feedback"""
 
     score: int = Field(
-        description="Score from 1 tp 10",
+        description="Score from 1 to 10",
         ge=1,
         le=10
     )
@@ -50,12 +50,7 @@ class InterviewReport(BaseModel):
 def create_evaluator_simple():
     """Use with_structured_output for cleaner code."""
 
-    llm = ChatOpenAI(
-    model="gemini-2.5-flash",
-    temperature=0.3,
-    api_key=lambda: os.environ["GEMINI_API_KEY"],
-    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-    )
+    llm = create_chat_llm(temperature=0.3)
 
     structured_llm = llm.with_structured_output(AnswerFeedback)
 
@@ -79,7 +74,7 @@ def create_report_generator():
     llm = ChatOpenAI(
     model="gemini-2.5-flash",
     temperature=0.3,
-    api_key=lambda: os.environ["GEMINI_API_KEY"],
+    api_key=SecretStr(os.environ.get("GEMINI_API_KEY", "")),
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
     )
 

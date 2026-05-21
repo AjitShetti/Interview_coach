@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory, InMemoryChatMessageHistory
+from pydantic import SecretStr
 import os
 
 INTERVIEWER_SYSTEM_PROMPT = """You are an expert technical interviewer conducting a {interview_type} interview.
@@ -47,7 +48,7 @@ def create_interviewer_with_history():
 
     llm = ChatOpenAI(
     model="gemini-2.5-flash",
-    api_key=lambda: os.environ["GEMINI_API_KEY"],
+    api_key=SecretStr(os.environ.get("GEMINI_API_KEY", "")),
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
     chain = prompt | llm | StrOutputParser()

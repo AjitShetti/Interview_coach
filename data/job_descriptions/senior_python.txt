@@ -1,0 +1,23 @@
+Senior Python Developer - TechCorp
+
+About the Role:
+We're looking for a Senior Python Developer to join our Platform team.
+You'll be building scalable microservices that process millions of events daily.
+
+Requirements:
+- 5+ years Python experience
+- Strong understanding of async programming (asyncio, aiohttp)
+- Experience with FastAPI or Django
+- Knowledge of message queues (Kafka, RabbitMQ)
+- PostgreSQL and Redis experience
+- Docker and Kubernetes familiarity
+- CI/CD pipeline experience
+
+Nice to Have:
+- Experience with event-driven architecture
+- Knowledge of distributed systems
+- GraphQL experience
+- Monitoring with Prometheus/Grafana
+
+Tech Stack:
+Python 3.11, FastAPI, PostgreSQL, Redis, Kafka, Docker, Kubernetes, AWS
