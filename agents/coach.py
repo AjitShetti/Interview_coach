@@ -1,5 +1,5 @@
 from langchain_openai import ChatOpenAI
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent
 from pydantic import SecretStr
 import os
 
@@ -45,10 +45,9 @@ def create_interview_agent():
         base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
     )
 
-    agent = create_react_agent(
+    agent = create_agent(
         model=llm,
         tools=tools,
-        state_modifier=AGENT_SYSTEM_PROMPT,
     )
 
 

@@ -14,5 +14,7 @@ dependencies = [
     "langchain-text-splitters>=1.1.2",
     "pypdf>=6.11.0",
     "python-dotenv>=1.2.2",
+    "rich>=15.0.0",
+    "streamlit>=1.57.0",
     "tiktoken>=0.13.0",
 ]

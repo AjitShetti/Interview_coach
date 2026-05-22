@@ -5,6 +5,7 @@ from langchain_community.document_loaders import (
     DirectoryLoader    
 )
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document
 from pathlib import Path
 
 def load_job_descriptions(file_path: str):
@@ -46,3 +47,8 @@ def split_documents(documents, chunk_size=500, chunk_overlap=50):
         separators=["\n\n", "\n", ". ", " ", ""]
     )
     return splitter.split_documents(documents)
+
+def create_docs_from_text(text: str) -> list[Document]:
+    """Create LangChain Documents from a raw text string."""
+    return [Document(page_content=text, metadata={"source": "inline", "type": "job_description"})]
+

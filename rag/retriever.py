@@ -9,7 +9,7 @@ def create_vector_store(documents: List[Document], persist_directory: str = None
     """Creates vector store for documents"""
 
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/embedding-001",
+        model="models/gemini-embedding-001",
         api_key = SecretStr(os.environ.get("GEMINI_API_KEY", ""))
     )
 
