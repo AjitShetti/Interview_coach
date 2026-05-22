@@ -44,7 +44,7 @@ def create_retriever(vector_store, k:int = 4):
     """Create a retriever that finds similar documents"""
 
     return vector_store.as_retriever(
-        search_types="similarity",
+        search_type="similarity",
         search_kwargs={'k':k}
     )
 

@@ -12,7 +12,7 @@ class AnswerFeedback(BaseModel):
         ge=1,
         le=10
     )
-    understanding: str = Field(description="Assesment of Conceptual Understanding.")
+    understanding: str = Field(description="Assessment of Conceptual Understanding.")
 
     communication: str = Field(
         description="How well they explained their answer"
@@ -50,7 +50,11 @@ class InterviewReport(BaseModel):
 def create_evaluator_simple():
     """Use with_structured_output for cleaner code."""
 
-    llm = create_chat_llm(temperature=0.3)
+    llm = ChatOpenAI(
+    model="gemini-2.5-flash-lite",
+    api_key=SecretStr(os.environ.get("GEMINI_API_KEY", "")),
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
 
     structured_llm = llm.with_structured_output(AnswerFeedback)
 
@@ -72,7 +76,7 @@ def create_report_generator():
     """Create final Interview Report"""
 
     llm = ChatOpenAI(
-    model="gemini-2.5-flash",
+    model="gemini-2.5-flash-lite",
     temperature=0.3,
     api_key=SecretStr(os.environ.get("GEMINI_API_KEY", "")),
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"

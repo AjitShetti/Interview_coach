@@ -1,10 +1,13 @@
 from dotenv import load_dotenv
 load_dotenv()
 
+from langchain_core.messages import AIMessage, HumanMessage
+
 from chains.interviewer import create_interviewer_with_history, get_session_history
 from chains.evaluator import create_evaluator_simple, create_report_generator
 from rag.setup import setup_interview_rag
 from chains.topic_extractor import create_topic_extractor
+from agents.coach import create_interview_agent
 
 
 INTERVIEW_TYPES = {
@@ -25,6 +28,8 @@ INTERVIEWER_STYLES = {
     "challenging": "Push back on answers, ask follow-ups, test depth.",
     "neutral": "Professional and straightforward, minimal feedback."
 }
+
+MAX_HISTORY = 10
 
 def run_interview_with_feedback():
     interviewer = create_interviewer_with_history()
@@ -181,9 +186,75 @@ def run_rag_interview():
 
         print("-" * 30)
 
+
+def run_adaptive_interview():
+
+    agent = create_interview_agent()
+
+    interview_config = {
+        "interview_type": "technical",
+        "position": "Senior Python Developer",
+        "topics": "Python, async programming, databases, API design"
+    }
+
+    print("=" * 50)
+    print("Adaptive AI Interview Coach")
+    print("=" * 50)
+
+    chat_history = []
+
+    try:
+        result = agent.invoke({
+            **interview_config,
+            "chat_history": chat_history,
+            "input": "Start the interview. Ask the first question."
+        })
+
+        response = result["messages"][-1].content
+
+        print(f"\nInterviewer: {response}\n")
+
+        chat_history.append(AIMessage(content=response))
+
+    except Exception as e:
+        print(f"Startup Error: {e}")
+        return
+
+    while True:
+
+        answer = input("You: ")
+
+        if answer.lower() == "quit":
+            break
+
+        chat_history.append(HumanMessage(content=answer))
+
+        chat_history = chat_history[-MAX_HISTORY:]
+
+        try:
+
+            result = agent.invoke({
+                **interview_config,
+                "chat_history": chat_history,
+                "input": "Evaluate the candidate's latest answer and ask the next question."
+            })
+
+            response = result["messages"][-1].content
+
+            print(f"\nInterviewer: {response}\n")
+
+            chat_history.append(AIMessage(content=response))
+
+        except Exception as e:
+            print(f"Error: {e}")
+
+    print("\nInterview complete!")
+
 if __name__ == "__main__":
-    mode = input("Choose mode - (1) Standard Interview  (2) RAG Interview: ").strip()
+    mode = input("Choose mode - (1) Standard Interview  (2) RAG Interview  (3) Adaptive Interview: ").strip()
     if mode == "2":
         run_rag_interview()
+    elif mode == "3":
+        run_adaptive_interview()
     else:
         run_interview_with_feedback()

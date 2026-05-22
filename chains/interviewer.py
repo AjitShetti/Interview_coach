@@ -47,7 +47,7 @@ def create_interviewer_with_history():
     ])
 
     llm = ChatOpenAI(
-    model="gemini-2.5-flash",
+    model="gemini-2.5-flash-lite",
     api_key=SecretStr(os.environ.get("GEMINI_API_KEY", "")),
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )

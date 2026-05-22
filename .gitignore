@@ -16,3 +16,4 @@ wheels/
 #test_setup.py
 uv.lock
 
+models_available.py

@@ -29,7 +29,7 @@ Ensure this question is different from previous ones.""")
     llm = ChatOpenAI(
         model="gemini-2.5-flash",
         temperature=0.7,
-        api_key=SecretStr(os.environ.get("GEMINI_API_KEY", " ")),
+        api_key=SecretStr(os.environ.get("GEMINI_API_KEY", "")),
         base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
     )
 
