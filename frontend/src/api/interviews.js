@@ -14,3 +14,13 @@ export const getSession = (sessionId) =>
 
 export const deleteSession = (sessionId) =>
   api.delete(`/interviews/${sessionId}`)
+
+export const getTTSAudio = async (text, voice = 'M1') => {
+  const response = await api.post(
+    '/interviews/tts',
+    { text, voice },
+    { responseType: 'blob' }
+  )
+  return URL.createObjectURL(response.data)
+}
+

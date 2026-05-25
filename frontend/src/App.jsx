@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Interview from './pages/Interview'
+import AudioInterview from './pages/AudioInterview'
 import Report from './pages/Report'
 
 function ProtectedRoute({ children }) {
@@ -48,6 +49,15 @@ export default function App() {
             <ProtectedRoute>
               <Navbar />
               <Interview />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/interview/audio"
+          element={
+            <ProtectedRoute>
+              <Navbar />
+              <AudioInterview />
             </ProtectedRoute>
           }
         />

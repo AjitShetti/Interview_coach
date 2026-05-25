@@ -1,5 +1,7 @@
 from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
+from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.database import get_db
@@ -15,8 +17,13 @@ from backend.schemas.session import (
     SessionDetail
 )
 from backend.services import interview_service
+from backend.services.tts_service import generate_tts_audio
 
 router = APIRouter(prefix="/interviews", tags=["Interviews"])
+
+class TTSRequest(BaseModel):
+    text: str
+    voice: str = "M1"
 
 
 @router.post("/start", response_model=StartInterviewResponse, status_code=201)
@@ -91,3 +98,16 @@ async def delete_session(
     deleted = await interview_service.delete_session(db, session_id, current_user.id)
     if not deleted:
         raise HTTPException(status_code=404, detail="Session not found")
+
+@router.post("/tts", response_class=Response)
+async def generate_speech(
+    payload: TTSRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Generate audio from text using Supertonic 3 TTS."""
+    try:
+        audio_buffer = await generate_tts_audio(payload.text, payload.voice)
+        # Return the exact bytes instead of a generator to ensure Content-Length is set properly
+        return Response(content=audio_buffer.getvalue(), media_type="audio/wav")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"TTS generation failed: {str(e)}")

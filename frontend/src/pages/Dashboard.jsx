@@ -50,12 +50,20 @@ export default function Dashboard() {
           </h1>
           <p className="text-slate-400 mt-1">Your interview sessions</p>
         </div>
-        <Link
-          to="/interview"
-          className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors"
-        >
-          + New Interview
-        </Link>
+        <div className="flex gap-3">
+          <Link
+            to="/interview"
+            className="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-4 py-2.5 rounded-xl transition-colors text-sm"
+          >
+            + Text Interview
+          </Link>
+          <Link
+            to="/interview/audio"
+            className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-4 py-2.5 rounded-xl transition-colors text-sm"
+          >
+            + Audio Interview
+          </Link>
+        </div>
       </div>
 
       {loading ? (
@@ -63,12 +71,20 @@ export default function Dashboard() {
       ) : sessions.length === 0 ? (
         <div className="text-center py-20 bg-slate-900 border border-slate-700 rounded-2xl">
           <p className="text-slate-400 text-lg mb-4">No interviews yet</p>
-          <Link
-            to="/interview"
-            className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors"
-          >
-            Start your first interview
-          </Link>
+          <div className="flex justify-center gap-4">
+            <Link
+              to="/interview"
+              className="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors"
+            >
+              Start Text Interview
+            </Link>
+            <Link
+              to="/interview/audio"
+              className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors"
+            >
+              Start Audio Interview
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="space-y-3">

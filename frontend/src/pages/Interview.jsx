@@ -69,6 +69,9 @@ export default function Interview() {
 
         {/* Left panel — setup */}
         <div className="lg:col-span-1 bg-slate-900 border border-slate-700 rounded-2xl p-6 overflow-y-auto">
+          <div className="flex justify-between items-center mb-6 border-b border-slate-700 pb-4">
+            <h2 className="text-lg font-semibold text-white">Interview Setup</h2>
+          </div>
           <SetupForm onStarted={() => setStarted(true)} />
 
           {started && !isComplete && questionsRemaining > 0 && (

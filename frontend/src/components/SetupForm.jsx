@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 const LEVELS = ['junior', 'mid', 'senior', 'staff']
 const TYPES = ['technical', 'behavioral', 'system_design']
 
-export default function SetupForm({ onStarted }) {
+export default function SetupForm({ onStarted, onInteract }) {
   const [form, setForm] = useState({
     position: 'Senior Python Developer',
     level: 'senior',
@@ -24,6 +24,8 @@ export default function SetupForm({ onStarted }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (onInteract) onInteract() // Synchronously unlock audio context!
+    
     setLoading(true)
     reset()
     try {
@@ -43,8 +45,6 @@ export default function SetupForm({ onStarted }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h2 className="text-lg font-semibold text-white">Interview Setup</h2>
-
       <div>
         <label className="block text-sm text-slate-400 mb-1">Position</label>
         <input
