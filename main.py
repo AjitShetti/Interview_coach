@@ -4,35 +4,45 @@ load_dotenv()
 import argparse
 from rich.console import Console
 from rich.panel import Panel
-from interview_coach import InterviewCoach
+from interview_coach import InterviewCoach, TOPIC_DEFAULTS
 
 console = Console()
 
 
 def run_cli():
-    parser = argparse.ArgumentParser(description="AI Interview Coach")
-    parser.add_argument("--job", "-j", help="Path to job description file")
-    parser.add_argument("--type", "-t", default="technical", help="Interview type")
-    parser.add_argument("--level", "-l", default="senior", help="Position level")
-    parser.add_argument("--position", "-p", default="Senior Python Developer", help="Job position")
-    parser.add_argument("--questions", "-q", type=int, default=5, help="Number of questions")
+    parser = argparse.ArgumentParser(description="AI Interview Coach — CLI mode")
+    parser.add_argument("--job", "-j", help="Path to a job description file (enables RAG questions)")
+    parser.add_argument(
+        "--type", "-t",
+        default="technical",
+        choices=["technical", "behavioral", "system_design", "dsa"],
+        help="Interview type (default: technical)",
+    )
+    parser.add_argument(
+        "--level", "-l",
+        default="senior",
+        choices=["junior", "mid", "senior", "staff"],
+        help="Position level (default: senior)",
+    )
+    parser.add_argument("--position", "-p", default="Senior Python Developer", help="Job position title")
+    parser.add_argument("--questions", "-q", type=int, default=5, help="Number of questions (default: 5)")
     args = parser.parse_args()
 
     console.print(Panel.fit(
         "[bold cyan]AI Interview Coach[/bold cyan]\n"
-        "Practice technical interviews with AI feedback",
-        border_style="cyan"
+        "Practice interviews with real-time AI feedback",
+        border_style="cyan",
     ))
 
     coach = InterviewCoach(
         job_description_path=args.job,
         interview_type=args.type,
         level=args.level,
-        position=args.position
+        position=args.position,
     )
 
     session_id = "cli_session"
-    topics = ["Python", "system design", "algorithms", "best practices", "behavioral"]
+    topics = TOPIC_DEFAULTS.get(args.type, TOPIC_DEFAULTS["technical"])
 
     welcome = coach.start_interview(session_id, topics[:args.questions])
     console.print(f"\n[bold green]Interviewer:[/bold green] {welcome}\n")
@@ -40,7 +50,7 @@ def run_cli():
     while True:
         answer = console.input("[bold blue]You:[/bold blue] ")
 
-        if answer.lower() in ["quit", "exit", "q"]:
+        if answer.lower() in ("quit", "exit", "q"):
             console.print("[yellow]Interview ended early.[/yellow]")
             break
 
@@ -51,9 +61,7 @@ def run_cli():
             break
 
         feedback = result["feedback"]
-        console.print(
-            f"\n[dim]Score: {feedback.score}/10 | {feedback.understanding}[/dim]"
-        )
+        console.print(f"\n[dim]Score: {feedback.score}/10 | {feedback.improvements}[/dim]")
 
         if result["is_complete"]:
             console.print("\n[bold]Generating your interview report...[/bold]\n")
@@ -71,12 +79,13 @@ def run_cli():
                 f"[yellow]Areas to Improve:[/yellow]\n{improvements}\n\n"
                 f"[blue]Suggested Topics to Study:[/blue]\n{topics_to_study}",
                 title="Interview Report",
-                border_style="green"
+                border_style="green",
             ))
             break
 
+        questions_remaining = result.get("questions_remaining", 0)
         console.print(f"\n[bold green]Interviewer:[/bold green] {result['next_question']}\n")
-        console.print(f"[dim](<{result['questions_remaining']} questions remaining>)[/dim]\n")
+        console.print(f"[dim]({questions_remaining} question{'s' if questions_remaining != 1 else ''} remaining)[/dim]\n")
 
 
 if __name__ == "__main__":

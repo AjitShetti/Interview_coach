@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import FeedbackCard from './FeedbackCard'
+import { Bot, User } from 'lucide-react'
 
 export default function ChatWindow({ messages, isLoading }) {
   const bottomRef = useRef(null)
@@ -9,38 +10,51 @@ export default function ChatWindow({ messages, isLoading }) {
   }, [messages])
 
   return (
-    <div className="flex flex-col gap-4 overflow-y-auto flex-1 pr-1">
+    <div className="flex flex-col gap-6 overflow-y-auto flex-1 pr-1">
       {messages.map((msg, idx) => (
         <div
           key={idx}
-          className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+          className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
         >
-          <div
-            className={`max-w-[80%] rounded-2xl px-5 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
-              msg.role === 'user'
-                ? 'bg-cyan-600 text-white rounded-br-sm'
-                : 'bg-slate-800 text-slate-100 border border-slate-700 rounded-bl-sm'
-            }`}
-          >
-            {msg.role === 'interviewer' && (
-              <p className="text-cyan-400 text-xs font-semibold mb-1 uppercase tracking-wide">
-                Interviewer
-              </p>
-            )}
-            {msg.content}
-            {msg.feedback && <FeedbackCard feedback={msg.feedback} />}
+          {msg.role === 'user' ? (
+            <div className="w-8 h-8 rounded-full bg-surface-raised border border-border-subtle flex items-center justify-center flex-shrink-0 text-text-secondary overflow-hidden">
+              <User size={18} strokeWidth={1.5} />
+            </div>
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-surface-variant border border-border-subtle flex items-center justify-center flex-shrink-0">
+              <Bot size={18} strokeWidth={1.5} className="text-text-secondary" />
+            </div>
+          )}
+          
+          <div className="flex-1 flex flex-col justify-end">
+            <div
+              className={`max-w-[90%] p-4 text-body font-body text-on-surface shadow-sm ${
+                msg.role === 'user'
+                  ? 'bg-surface-container-high border border-border-subtle rounded-lg rounded-tr-none self-end'
+                  : 'bg-surface-container border border-border-subtle rounded-lg rounded-tl-none'
+              }`}
+            >
+              {msg.role === 'interviewer' && (
+                <p className="text-primary-container text-xs font-semibold mb-2 uppercase tracking-wide">
+                  Interviewer
+                </p>
+              )}
+              <div className="whitespace-pre-wrap">{msg.content}</div>
+              {msg.feedback && <FeedbackCard feedback={msg.feedback} />}
+            </div>
           </div>
         </div>
       ))}
 
       {isLoading && (
-        <div className="flex justify-start">
-          <div className="bg-slate-800 border border-slate-700 rounded-2xl rounded-bl-sm px-5 py-3">
-            <div className="flex gap-1.5 items-center">
-              <span className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce [animation-delay:0ms]" />
-              <span className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce [animation-delay:150ms]" />
-              <span className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce [animation-delay:300ms]" />
-            </div>
+        <div className="flex gap-4">
+          <div className="w-8 h-8 rounded-full bg-surface-variant border border-border-subtle flex items-center justify-center flex-shrink-0">
+            <Bot size={18} strokeWidth={1.5} className="text-text-secondary" />
+          </div>
+          <div className="bg-surface-container border border-border-subtle rounded-lg rounded-tl-none p-4 shadow-sm flex items-center gap-1.5 h-12">
+            <span className="w-2 h-2 bg-primary-container rounded-full animate-bounce [animation-delay:0ms]" />
+            <span className="w-2 h-2 bg-primary-container rounded-full animate-bounce [animation-delay:150ms]" />
+            <span className="w-2 h-2 bg-primary-container rounded-full animate-bounce [animation-delay:300ms]" />
           </div>
         </div>
       )}

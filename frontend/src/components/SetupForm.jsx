@@ -34,7 +34,7 @@ export default function SetupForm({ onStarted, onInteract }) {
         num_questions: Number(form.num_questions),
         job_description: form.job_description || null,
       })
-      setSession(data.session_id, data.first_question, data.welcome_message)
+      setSession(data.session_id, data.first_question, data.welcome_message, Number(form.num_questions))
       onStarted()
     } catch (err) {
       toast.error(err.response?.data?.detail || 'Failed to start interview')
@@ -46,22 +46,22 @@ export default function SetupForm({ onStarted, onInteract }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Position</label>
+        <label className="block text-sm text-text-secondary mb-1">Position</label>
         <input
           name="position"
           value={form.position}
           onChange={handleChange}
-          className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-500"
+          className="w-full bg-[#141414] border border-[#2A2A2A] rounded-lg px-3 py-2 text-on-surface text-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
         />
       </div>
 
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Level</label>
+        <label className="block text-sm text-text-secondary mb-1">Level</label>
         <select
           name="level"
           value={form.level}
           onChange={handleChange}
-          className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-500"
+          className="w-full bg-[#141414] border border-[#2A2A2A] rounded-lg px-3 py-2 text-on-surface text-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
         >
           {LEVELS.map((l) => (
             <option key={l} value={l}>{l.charAt(0).toUpperCase() + l.slice(1)}</option>
@@ -70,12 +70,12 @@ export default function SetupForm({ onStarted, onInteract }) {
       </div>
 
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Interview Type</label>
+        <label className="block text-sm text-text-secondary mb-1">Interview Type</label>
         <select
           name="interview_type"
           value={form.interview_type}
           onChange={handleChange}
-          className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-500"
+          className="w-full bg-[#141414] border border-[#2A2A2A] rounded-lg px-3 py-2 text-on-surface text-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
         >
           {TYPES.map((t) => (
             <option key={t} value={t}>{t.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}</option>
@@ -84,7 +84,7 @@ export default function SetupForm({ onStarted, onInteract }) {
       </div>
 
       <div>
-        <label className="block text-sm text-slate-400 mb-1">
+        <label className="block text-sm text-text-secondary mb-1">
           Questions: {form.num_questions}
         </label>
         <input
@@ -94,13 +94,13 @@ export default function SetupForm({ onStarted, onInteract }) {
           max={10}
           value={form.num_questions}
           onChange={handleChange}
-          className="w-full accent-cyan-500"
+          className="w-full accent-primary-container"
         />
       </div>
 
       <div>
-        <label className="block text-sm text-slate-400 mb-1">
-          Job Description <span className="text-slate-600">(optional)</span>
+        <label className="block text-sm text-text-secondary mb-1">
+          Job Description <span className="text-text-disabled">(optional)</span>
         </label>
         <textarea
           name="job_description"
@@ -108,14 +108,14 @@ export default function SetupForm({ onStarted, onInteract }) {
           onChange={handleChange}
           rows={4}
           placeholder="Paste JD for targeted questions..."
-          className="w-full bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-cyan-500 resize-none"
+          className="w-full bg-[#141414] border border-[#2A2A2A] rounded-lg px-3 py-2 text-on-surface text-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all resize-none"
         />
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-cyan-600 hover:bg-cyan-500 disabled:bg-slate-700 disabled:cursor-not-allowed text-white font-semibold py-2.5 rounded-lg transition-colors"
+        className="w-full bg-primary-container hover:bg-accent-hover disabled:bg-surface-variant disabled:text-text-disabled disabled:cursor-not-allowed text-[#131313] font-semibold py-2.5 rounded-lg transition-colors active:scale-[0.98]"
       >
         {loading ? 'Starting...' : 'Start Interview'}
       </button>

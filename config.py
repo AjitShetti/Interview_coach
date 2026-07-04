@@ -1,10 +1,11 @@
 from pydantic_settings import BaseSettings
-from typing import Literal
+from typing import Literal, Optional
+
 
 class Settings(BaseSettings):
     # API Keys
-    gemini_api_key:str = ""
-    
+    gemini_api_key: str = ""
+
     # Model settings
     model_name: str = "gemini-2.5-flash-lite"
     temperature: float = 0.7
@@ -19,15 +20,15 @@ class Settings(BaseSettings):
     chunk_overlap: int = 50
     retriever_k: int = 3
 
-    # Database  ← NEW
-    database_url: str
+    # Database — required only when running the FastAPI backend
+    database_url: Optional[str] = None
 
-    # JWT Auth  ← NEW
-    secret_key: str
+    # JWT Auth — required only when running the FastAPI backend
+    secret_key: Optional[str] = None
     access_token_expire_minutes: int = 60
 
     class Config:
         env_file = ".env"
 
-settings = Settings()
 
+settings = Settings()

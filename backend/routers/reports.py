@@ -18,7 +18,10 @@ async def generate_report(
     db: AsyncSession = Depends(get_db)
 ):
     """Generate and save a report for a completed interview session."""
-    report = await report_service.generate_report(db, session_id, current_user.id)
+    try:
+        report = await report_service.generate_report(db, session_id, current_user.id)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
     if report is None:
         raise HTTPException(status_code=404, detail="Session not found")

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard - Interview Coach</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container": "#201f1f",
+                "on-surface": "#e5e2e1",
+                "surface-variant": "#353534",
+                "primary-fixed-dim": "#eec068",
+                "on-tertiary-fixed-variant": "#474646",
+                "surface-dim": "#131313",
+                "on-primary-container": "#573d00",
+                "secondary-fixed-dim": "#cac6bd",
+                "secondary-container": "#4b4942",
+                "on-secondary-fixed-variant": "#494740",
+                "primary-container": "#d4a853",
+                "on-primary-fixed": "#271900",
+                "border-subtle": "#1E1E1E",
+                "on-primary-fixed-variant": "#5d4200",
+                "error": "#B85C5C",
+                "on-secondary-fixed": "#1d1c16",
+                "primary": "#f2c36b",
+                "surface-raised": "#1C1C1C",
+                "on-primary": "#412d00",
+                "surface-container-lowest": "#0e0e0e",
+                "border-base": "#2A2A2A",
+                "surface-tint": "#eec068",
+                "error-container": "#93000a",
+                "surface-container-high": "#2a2a2a",
+                "surface-container-low": "#1c1b1b",
+                "secondary": "#cac6bd",
+                "outline-variant": "#4e4637",
+                "accent-hover": "#C49840",
+                "primary-fixed": "#ffdea6",
+                "text-secondary": "#8A8277",
+                "secondary-fixed": "#e7e2d8",
+                "text-disabled": "#4A4744",
+                "outline": "#9b8f7e",
+                "code-bg": "#111111",
+                "warning": "#A87B3A",
+                "tertiary-container": "#b0aeae",
+                "on-tertiary-container": "#424242",
+                "tertiary-fixed-dim": "#c8c6c5",
+                "success": "#4A9B6F",
+                "on-tertiary": "#313030",
+                "background": "#131313",
+                "tertiary-fixed": "#e5e2e1",
+                "tertiary": "#ccc9c9",
+                "on-tertiary-fixed": "#1c1b1b",
+                "on-surface-variant": "#d2c5b2",
+                "on-secondary": "#32302a",
+                "surface-bright": "#3a3939",
+                "inverse-on-surface": "#313030",
+                "on-error": "#690005",
+                "on-secondary-container": "#bcb8af",
+                "inverse-primary": "#7b5804",
+                "surface-container-highest": "#353534",
+                "surface": "#131313",
+                "on-background": "#e5e2e1",
+                "on-error-container": "#ffdad6",
+                "inverse-surface": "#e5e2e1",
+                "accent-subtle": "#2A2215"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "md": "16px",
+                "max-width": "1120px",
+                "gutter-mobile": "24px",
+                "3xl": "64px",
+                "xs": "4px",
+                "lg": "24px",
+                "xl": "32px",
+                "5xl": "128px",
+                "sm": "8px",
+                "gutter-desktop": "48px",
+                "2xl": "48px",
+                "4xl": "96px",
+                "margin-mobile": "16px",
+                "section-padding": "64px",
+                "stack-sm": "8px",
+                "gutter": "24px",
+                "stack-lg": "32px",
+                "unit": "4px",
+                "container-max": "1200px",
+                "stack-md": "16px"
+        },
+        "fontFamily": {
+                "body-sm": [
+                        "DM Sans"
+                ],
+                "display": [
+                        "Instrument Serif"
+                ],
+                "headline-sm": [
+                        "DM Sans"
+                ],
+                "headline-md": [
+                        "Instrument Serif"
+                ],
+                "body-lg": [
+                        "DM Sans"
+                ],
+                "body": [
+                        "DM Sans"
+                ],
+                "headline-lg": [
+                        "Instrument Serif"
+                ],
+                "mono-sm": [
+                        "JetBrains Mono"
+                ],
+                "display-mobile": [
+                        "Instrument Serif"
+                ],
+                "mono-lg": [
+                        "JetBrains Mono"
+                ],
+                "mono-data": ["JetBrains Mono"]
+        },
+        "fontSize": {
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "72px",
+                        {
+                                "lineHeight": "1.05",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "22px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.7",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body": [
+                        "16px",
+                        {
+                                "lineHeight": "1.65",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Custom Utilities for Elevated Minimalist feel */
+        .glass-glow {
+            background: radial-gradient(circle at top right, rgba(212, 168, 83, 0.05), transparent 60%);
+        }
+        .bento-card {
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .bento-card:hover {
+            border-color: #2A2A2A; /* border-strong */
+        }
+        .btn-primary {
+            background-color: #d4a853;
+            color: #131313;
+        }
+        .btn-primary:hover {
+            background-color: #C49840;
+        }
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="bg-[#0D0D0D] text-on-surface font-body text-body antialiased min-h-screen flex flex-col lg:flex-row overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Mobile Top Navigation (Visible only on smaller screens) -->
+<header class="lg:hidden bg-[#141414] sticky top-0 z-50 flex justify-between items-center w-full px-6 py-4 bg-[#141414]/80 backdrop-blur-md border-b border-[#2A2A2A]">
+<div class="flex items-center gap-stack-sm">
+<span class="text-headline-sm font-headline-sm font-bold tracking-tight text-on-surface">Interview Coach</span>
+</div>
+<div class="flex items-center gap-stack-md text-primary">
+<button class="hover:text-primary-container transition-colors duration-200 active:scale-[0.98] focus:outline-none">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-primary-container transition-colors duration-200 active:scale-[0.98] focus:outline-none">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-raised overflow-hidden border border-border-base ml-2">
+<img alt="Professional user profile avatar" class="w-full h-full object-cover" data-alt="A close-up headshot of a confident professional in a dark studio setting. The lighting is cinematic, with a soft cool fill and a subtle rim light that highlights the subject's features against a deep, shadowed background. The overall tone is modern, focused, and premium, matching a sleek dark-mode software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQZ2DYVPe_uOa6Z6yoU8GVAUvzBRovlndFagsR1Yc7k7nThlRmVd0NnM0uChLXOIE53vIl5jCO231lJyV2uht6UzvTi0k1OOHQSfAWNE7nxCvY5ATrH12B_17FypTZIf34OTCGBgwgPFm04OLns-nrhmZvA6X1nzoxwu0Y6OUkHg1yZvLvTugL0XWQgSCr7ODygABbgIiC1Jt3tylJMz7FTQ9JWG5HgCbNWZgFuxNpFsLDvC561b7ilHL3bgu8PxjOdfjFyqF0eDuQ"/>
+</div>
+</div>
+</header>
+<!-- Desktop Side Navigation (Hidden on mobile) -->
+<nav class="bg-[#141414] border-r border-[#2A2A2A] hidden lg:flex flex-col h-screen fixed left-0 top-0 py-8 px-4 gap-stack-lg w-64 z-40">
+<!-- Header -->
+<div class="flex items-center gap-stack-md px-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-surface-raised overflow-hidden border border-[#2A2A2A] flex-shrink-0">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A close-up headshot of a confident professional in a dark studio setting. The lighting is cinematic, with a soft cool fill and a subtle rim light that highlights the subject's features against a deep, shadowed background. The overall tone is modern, focused, and premium, matching a sleek dark-mode software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1mrvSiOEgv8FKD58SdXMmvU9KU4V4mtTCr8nM05YhONQOTX37u9jJZ6xYikmXawtjT8sz1VMjVIUbsxIx7iZtiqTlq5N6Yw_LqGvOfj8qOaawnTs9-TKWdMMu6zPXGr1OGMSmJq2CKSEoxS2Hl-k13PGLdD8UfLHahm1VEONDSwSWODyuP2UG8lso_u_m78Kk_rZ2e-9zPoVkCQ2SlJzI3SbTVB6mHflkHTVRyZcf6j0uHD6aFB24NCqsW4imLcbLZW-xSo0RqHsE"/>
+</div>
+<div>
+<h1 class="text-headline-sm font-headline-sm font-bold text-on-surface leading-none tracking-tight">Interview Coach</h1>
+<p class="text-[12px] font-body text-text-secondary mt-1 tracking-widest uppercase">Premium Prep</p>
+</div>
+</div>
+<!-- Main Nav Links -->
+<div class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-stack-md px-4 py-3 rounded-lg bg-accent-subtle text-primary-container font-semibold border-r-4 border-primary-container hover:bg-surface-raised transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-body font-body">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 rounded-lg text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="keyboard_voice">keyboard_voice</span>
+<span class="text-body font-body">Practice Sessions</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 rounded-lg text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-body font-body">Analytics</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 rounded-lg text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="text-body font-body">Library</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="px-4 py-4">
+<button class="w-full btn-primary text-body font-body font-semibold py-3 rounded-lg transition-colors duration-200 flex justify-center items-center gap-2">
+                Start Practicing
+            </button>
+</div>
+<!-- Footer Links -->
+<div class="flex flex-col gap-1 mt-auto pt-4 border-t border-[#2A2A2A] px-4">
+<a class="flex items-center gap-stack-md px-4 py-2 rounded-lg text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help_outline">help_outline</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-2 rounded-lg text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
+<span>Account</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 w-full">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-section-padding flex flex-col gap-section-padding">
+<!-- Dashboard Header -->
+<section class="flex flex-col gap-stack-sm">
+<h2 class="text-display-mobile md:text-display font-display text-on-surface">Welcome back, Alex.</h2>
+<p class="text-body-lg font-body-lg text-text-secondary max-w-2xl">Your overall readiness score is <strong class="text-on-surface font-mono-lg font-medium">84%</strong>. Let's tackle that upcoming System Design interview.</p>
+</section>
+<!-- Quick Actions (Bento Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Voice Interview Card -->
+<div class="bento-card bg-[#141414] border border-[#2A2A2A] rounded-xl p-6 md:p-8 flex flex-col relative overflow-hidden glass-glow group cursor-pointer">
+<div class="flex items-center justify-between mb-6 relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-raised flex items-center justify-center border border-[#2A2A2A]">
+<span class="material-symbols-outlined text-primary-container text-[28px]" data-icon="record_voice_over" data-weight="fill">record_voice_over</span>
+</div>
+<span class="text-[12px] font-body text-text-disabled uppercase tracking-wider font-semibold">AI Coach</span>
+</div>
+<div class="relative z-10 flex-1">
+<h3 class="text-headline-md font-display text-on-surface mb-2">Voice Interview</h3>
+<p class="text-body font-body text-text-secondary mb-8">Simulate a real-time behavioral or product sense interview with conversational AI.</p>
+</div>
+<div class="relative z-10 mt-auto">
+<button class="w-full btn-primary text-body font-body font-medium py-3 rounded-lg flex items-center justify-center gap-2">
+<span>Start Voice Session</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Technical Interview Card -->
+<div class="bento-card bg-[#141414] border border-[#2A2A2A] rounded-xl p-6 md:p-8 flex flex-col relative overflow-hidden group cursor-pointer">
+<div class="flex items-center justify-between mb-6 relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-raised flex items-center justify-center border border-[#2A2A2A]">
+<span class="material-symbols-outlined text-on-surface text-[28px]" data-icon="code" data-weight="fill">code</span>
+</div>
+<span class="text-[12px] font-body text-text-disabled uppercase tracking-wider font-semibold">Coding &amp; Design</span>
+</div>
+<div class="relative z-10 flex-1">
+<h3 class="text-headline-md font-display text-on-surface mb-2">Technical Interview</h3>
+<p class="text-body font-body text-text-secondary mb-8">Practice algorithms, data structures, and system design with an interactive editor.</p>
+</div>
+<div class="relative z-10 mt-auto">
+<button class="w-full bg-transparent border border-[#2A2A2A] text-on-surface text-body font-body font-medium py-3 rounded-lg hover:bg-surface-raised transition-colors duration-200 flex items-center justify-center gap-2 group-active:scale-[0.98]">
+<span>Start Technical Session</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Past Sessions -->
+<section class="flex flex-col gap-stack-lg">
+<div class="flex items-center justify-between border-b border-border-subtle pb-4">
+<h3 class="text-headline-sm font-display text-on-surface">Recent Sessions</h3>
+<a class="text-body-sm font-body-sm text-text-secondary hover:text-primary-container transition-colors flex items-center gap-1" href="#">
+                        View All
+                        <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+<div class="grid grid-cols-1 gap-stack-md">
+<!-- Session Card 1 -->
+<div class="bg-[#141414] border border-[#2A2A2A] rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-stack-md hover:border-outline-variant transition-colors duration-200">
+<div class="flex flex-col md:flex-row md:items-center gap-stack-md flex-1">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-surface-raised border border-border-base flex items-center justify-center hidden md:flex">
+<span class="material-symbols-outlined text-text-secondary text-[20px]" data-icon="code">code</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h4 class="text-body-lg font-body-lg font-medium text-on-surface">System Design: Distributed Cache</h4>
+<span class="bg-surface-raised border border-border-subtle text-text-secondary text-[12px] font-body uppercase tracking-wider px-2 py-1 rounded">Technical</span>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-disabled">Oct 24, 2023 • 45 mins</p>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-stack-lg">
+<div class="flex flex-col md:items-end">
+<span class="text-[12px] font-body text-text-disabled uppercase tracking-wider font-semibold mb-1">Score</span>
+<div class="flex items-center gap-2">
+<span class="text-headline-md font-mono-lg text-on-surface leading-none">88</span>
+<span class="text-mono-sm font-mono-sm text-text-secondary">/ 100</span>
+</div>
+</div>
+<button class="bg-surface-raised border border-[#2A2A2A] hover:bg-surface-bright text-on-surface text-body-sm font-body-sm font-medium px-4 py-2 rounded transition-colors duration-200 active:scale-[0.98]">
+                                Review
+                            </button>
+</div>
+</div>
+<!-- Session Card 2 -->
+<div class="bg-[#141414] border border-[#2A2A2A] rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-stack-md hover:border-outline-variant transition-colors duration-200">
+<div class="flex flex-col md:flex-row md:items-center gap-stack-md flex-1">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-surface-raised border border-border-base flex items-center justify-center hidden md:flex">
+<span class="material-symbols-outlined text-text-secondary text-[20px]" data-icon="record_voice_over">record_voice_over</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h4 class="text-body-lg font-body-lg font-medium text-on-surface">Behavioral: Conflict Resolution</h4>
+<span class="bg-surface-raised border border-border-subtle text-text-secondary text-[12px] font-body uppercase tracking-wider px-2 py-1 rounded">Voice</span>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-disabled">Oct 22, 2023 • 30 mins</p>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-stack-lg">
+<div class="flex flex-col md:items-end">
+<span class="text-[12px] font-body text-text-disabled uppercase tracking-wider font-semibold mb-1">Score</span>
+<div class="flex items-center gap-2">
+<span class="text-headline-md font-mono-lg text-on-surface leading-none">92</span>
+<span class="text-mono-sm font-mono-sm text-text-secondary">/ 100</span>
+</div>
+</div>
+<button class="bg-surface-raised border border-[#2A2A2A] hover:bg-surface-bright text-on-surface text-body-sm font-body-sm font-medium px-4 py-2 rounded transition-colors duration-200 active:scale-[0.98]">
+                                Review
+                            </button>
+</div>
+</div>
+<!-- Session Card 3 -->
+<div class="bg-[#141414] border border-[#2A2A2A] rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-stack-md hover:border-outline-variant transition-colors duration-200">
+<div class="flex flex-col md:flex-row md:items-center gap-stack-md flex-1">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-surface-raised border border-border-base flex items-center justify-center hidden md:flex">
+<span class="material-symbols-outlined text-text-secondary text-[20px]" data-icon="code">code</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h4 class="text-body-lg font-body-lg font-medium text-on-surface">Algorithms: Dynamic Programming</h4>
+<span class="bg-surface-raised border border-border-subtle text-text-secondary text-[12px] font-body uppercase tracking-wider px-2 py-1 rounded">Technical</span>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-disabled">Oct 18, 2023 • 60 mins</p>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-stack-lg">
+<div class="flex flex-col md:items-end">
+<span class="text-[12px] font-body text-text-disabled uppercase tracking-wider font-semibold mb-1">Score</span>
+<div class="flex items-center gap-2">
+<span class="text-headline-md font-mono-lg text-on-surface leading-none">76</span>
+<span class="text-mono-sm font-mono-sm text-text-secondary">/ 100</span>
+</div>
+</div>
+<button class="bg-surface-raised border border-[#2A2A2A] hover:bg-surface-bright text-on-surface text-body-sm font-body-sm font-medium px-4 py-2 rounded transition-colors duration-200 active:scale-[0.98]">
+                                Review
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

@@ -8,11 +8,12 @@ const useInterviewStore = create((set, get) => ({
   isLoading: false,
   error: null,
 
-  setSession: (sessionId, firstQuestion, welcomeMessage) =>
+  setSession: (sessionId, firstQuestion, welcomeMessage, numQuestions) =>
     set({
       sessionId,
       isComplete: false,
       error: null,
+      questionsRemaining: numQuestions,
       messages: [
         { role: 'interviewer', content: `${welcomeMessage}\n\n${firstQuestion}` },
       ],

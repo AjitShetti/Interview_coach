@@ -24,10 +24,10 @@ class SubmitAnswerRequest(BaseModel):
 
 class FeedbackResponse(BaseModel):
     score: int
-    understanding: str
-    communication: str
-    strengths: List[str]
-    improvements: List[str]
+    improvements: str
+    code_feedback: Optional[str] = None
+    star_method_feedback: Optional[str] = None
+    architecture_feedback: Optional[str] = None
     follow_up_question: Optional[str] = None
 
 

@@ -3,7 +3,7 @@ load_dotenv()
 
 import streamlit as st
 import uuid
-from interview_coach import InterviewCoach
+from interview_coach import InterviewCoach, TOPIC_DEFAULTS
 
 st.set_page_config(page_title="AI Interview Coach", page_icon="🎯", layout="wide")
 
@@ -23,10 +23,14 @@ with st.sidebar:
 
     position = st.text_input("Position", "Senior Python Developer")
     level = st.selectbox("Level", ["junior", "mid", "senior", "staff"])
-    interview_type = st.selectbox("Type", ["technical", "behavioral", "system_design"])
+    interview_type = st.selectbox(
+        "Type",
+        ["technical", "behavioral", "system_design", "dsa"],
+        format_func=lambda t: t.replace("_", " ").title(),
+    )
     job_desc = st.text_area(
         "Job Description (optional)",
-        placeholder="Paste a job description for targeted questions..."
+        placeholder="Paste a job description for targeted questions...",
     )
     num_questions = st.slider("Number of Questions", 3, 10, 5)
 
@@ -35,16 +39,17 @@ with st.sidebar:
             job_description=job_desc if job_desc.strip() else None,
             interview_type=interview_type,
             level=level,
-            position=position
+            position=position,
         )
         st.session_state.session_id = str(uuid.uuid4())
         st.session_state.messages = []
         st.session_state.interview_complete = False
 
-        topics = ["core skills", "system design", "problem solving", "experience", "culture fit"]
+        # Topics are derived from interview_type; custom JD will further refine questions via RAG
+        topics = TOPIC_DEFAULTS.get(interview_type, TOPIC_DEFAULTS["technical"])
         welcome = st.session_state.coach.start_interview(
             st.session_state.session_id,
-            topics[:num_questions]
+            topics[:num_questions],
         )
         st.session_state.messages.append({"role": "assistant", "content": welcome})
         st.rerun()
@@ -64,12 +69,7 @@ else:
                     fb = message["feedback"]
                     col1, col2 = st.columns(2)
                     col1.metric("Score", f"{fb.score}/10")
-                    col2.write(f"**Communication:** {fb.communication}")
-                    st.write(f"**Understanding:** {fb.understanding}")
-                    if fb.improvements:
-                        st.write("**Tips to improve:**")
-                        for tip in fb.improvements:
-                            st.write(f"- {tip}")
+                    col2.write(f"**Improvements:** {fb.improvements}")
 
     # Chat input
     if not st.session_state.interview_complete:
@@ -105,13 +105,13 @@ else:
 """
                 st.session_state.messages.append({
                     "role": "assistant",
-                    "content": report_md
+                    "content": report_md,
                 })
             else:
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": result["next_question"],
-                    "feedback": result["feedback"]
+                    "feedback": result["feedback"],
                 })
 
             st.rerun()

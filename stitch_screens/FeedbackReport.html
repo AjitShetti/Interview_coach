@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interview Coach - Feedback Report</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container": "#201f1f",
+                "on-surface": "#e5e2e1",
+                "surface-variant": "#353534",
+                "primary-fixed-dim": "#eec068",
+                "on-tertiary-fixed-variant": "#474646",
+                "surface-dim": "#131313",
+                "on-primary-container": "#573d00",
+                "secondary-fixed-dim": "#cac6bd",
+                "secondary-container": "#4b4942",
+                "on-secondary-fixed-variant": "#494740",
+                "primary-container": "#d4a853",
+                "on-primary-fixed": "#271900",
+                "border-subtle": "#1E1E1E",
+                "on-primary-fixed-variant": "#5d4200",
+                "error": "#B85C5C",
+                "on-secondary-fixed": "#1d1c16",
+                "primary": "#f2c36b",
+                "surface-raised": "#1C1C1C",
+                "on-primary": "#412d00",
+                "surface-container-lowest": "#0e0e0e",
+                "border-base": "#2A2A2A",
+                "surface-tint": "#eec068",
+                "error-container": "#93000a",
+                "surface-container-high": "#2a2a2a",
+                "surface-container-low": "#1c1b1b",
+                "secondary": "#cac6bd",
+                "outline-variant": "#4e4637",
+                "accent-hover": "#C49840",
+                "primary-fixed": "#ffdea6",
+                "text-secondary": "#8A8277",
+                "secondary-fixed": "#e7e2d8",
+                "text-disabled": "#4A4744",
+                "outline": "#9b8f7e",
+                "code-bg": "#111111",
+                "warning": "#A87B3A",
+                "tertiary-container": "#b0aeae",
+                "on-tertiary-container": "#424242",
+                "tertiary-fixed-dim": "#c8c6c5",
+                "success": "#4A9B6F",
+                "on-tertiary": "#313030",
+                "background": "#131313",
+                "tertiary-fixed": "#e5e2e1",
+                "tertiary": "#ccc9c9",
+                "on-tertiary-fixed": "#1c1b1b",
+                "on-surface-variant": "#d2c5b2",
+                "on-secondary": "#32302a",
+                "surface-bright": "#3a3939",
+                "inverse-on-surface": "#313030",
+                "on-error": "#690005",
+                "on-secondary-container": "#bcb8af",
+                "inverse-primary": "#7b5804",
+                "surface-container-highest": "#353534",
+                "surface": "#131313",
+                "on-background": "#e5e2e1",
+                "on-error-container": "#ffdad6",
+                "inverse-surface": "#e5e2e1",
+                "accent-subtle": "#2A2215"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "md": "16px",
+                "max-width": "1120px",
+                "gutter-mobile": "24px",
+                "3xl": "64px",
+                "xs": "4px",
+                "lg": "24px",
+                "xl": "32px",
+                "5xl": "128px",
+                "sm": "8px",
+                "gutter-desktop": "48px",
+                "2xl": "48px",
+                "4xl": "96px"
+        },
+        "fontFamily": {
+                "body-sm": [
+                        "DM Sans"
+                ],
+                "display": [
+                        "Instrument Serif"
+                ],
+                "headline-sm": [
+                        "DM Sans"
+                ],
+                "headline-md": [
+                        "Instrument Serif"
+                ],
+                "body-lg": [
+                        "DM Sans"
+                ],
+                "body": [
+                        "DM Sans"
+                ],
+                "headline-lg": [
+                        "Instrument Serif"
+                ],
+                "mono-sm": [
+                        "JetBrains Mono"
+                ],
+                "display-mobile": [
+                        "Instrument Serif"
+                ],
+                "mono-lg": [
+                        "JetBrains Mono"
+                ]
+        },
+        "fontSize": {
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "72px",
+                        {
+                                "lineHeight": "1.05",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "22px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.7",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body": [
+                        "16px",
+                        {
+                                "lineHeight": "1.65",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle scrollbar for code blocks */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #1E293B;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-[#0D0D0D] text-on-surface antialiased h-screen flex overflow-hidden font-body">
+<!-- SideNavBar (from JSON) -->
+<aside class="bg-[#0D0D0D] docked left-0 h-full w-64 border-r border-border-base hidden lg:flex flex-col fixed py-8 px-4 gap-xl z-40">
+<!-- Header -->
+<div class="flex items-center gap-sm px-4">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center shrink-0 overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a person looking confident, lit with studio lighting, suitable for a professional networking profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl-56kB0MsgpkmI4kTyy5xmezWgQG6jCM0xF7NPFWYxbFKX-kZRIshLAStd2HC-RHcXsaO3BbLqz_lwwRYaKTx_da706iYx19YheqjKOWJ6ZvSb0wjOJNsxCKzcoYqK_dST7ERDhCJjmZi9ff1owEUsK1Tdw9HLxRvV0_rgLmO51h4urVMrSCssLsi6O5nzY41nWOP0ITJNSDDwSx5meUzzXTaEMBD4MI90uXcW5dkLZnABmlYJGtf1DV9Fx6NFuIPfj84R2H7xMm7"/>
+</div>
+<div>
+<h1 class="text-body-lg font-bold text-on-surface leading-tight">Interview Coach</h1>
+<p class="text-body-sm text-text-secondary text-[10px] uppercase tracking-wider font-bold">Premium Prep</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 mt-2">
+<button class="w-full bg-[#D4A853] text-on-primary hover:scale-[0.98] transition-transform duration-200 rounded py-2 text-body-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+                Start Practicing
+            </button>
+</div>
+<!-- Main Navigation -->
+<nav class="flex-1 flex flex-col gap-1 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#D4A853] transition-colors">dashboard</span>
+<span class="text-body-sm font-bold uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#D4A853] transition-colors">keyboard_voice</span>
+<span class="text-body-sm font-bold uppercase tracking-wider">Practice Sessions</span>
+</a>
+<!-- Active Tab: Analytics (Context: Feedback Report) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded bg-surface-raised text-[#D4A853] font-semibold border-r-4 border-[#D4A853] scale-[0.98] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">analytics</span>
+<span class="text-body-sm font-bold uppercase tracking-wider">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#D4A853] transition-colors">menu_book</span>
+<span class="text-body-sm font-bold uppercase tracking-wider">Library</span>
+</a>
+</nav>
+<!-- Footer Navigation -->
+<nav class="flex flex-col gap-1 mt-auto border-t border-border-base pt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#D4A853] transition-colors">help_outline</span>
+<span class="text-body-sm font-bold uppercase tracking-wider">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-text-secondary hover:text-on-surface hover:bg-surface-raised transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-[#D4A853] transition-colors">person</span>
+<span class="text-body-sm font-bold uppercase tracking-wider">Account</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 h-full overflow-y-auto bg-[#0D0D0D] relative">
+<!-- Optional Top Nav for Mobile could go here, but adhering strictly to constraints, we'll focus on the canvas -->
+<div class="max-w-max-width mx-auto px-gutter-mobile md:px-gutter-desktop py-3xl flex flex-col gap-3xl">
+<!-- Hero / Report Header -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-border-base pb-xl gap-xl">
+<div class="space-y-sm">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 bg-surface-raised rounded text-body-sm font-bold uppercase tracking-wider text-text-secondary border border-border-base">Frontend Engineer Role</span>
+<span class="text-text-disabled text-body-sm font-bold uppercase tracking-wider border-l border-border-base pl-2">Oct 24, 2023</span>
+</div>
+<h1 class="text-headline-lg font-display text-on-surface">Performance Analysis</h1>
+<p class="text-body-lg font-body-lg text-text-secondary max-w-2xl">
+                        A detailed breakdown of your recent technical interview simulation. Review your strengths and focus areas to refine your approach.
+                    </p>
+</div>
+<!-- High-level Score -->
+<div class="bg-[#141414] border border-[#2A2A2A] rounded-xl p-6 flex flex-col items-end shrink-0 relative overflow-hidden shadow-[0_0_40px_rgba(212,168,83,0.05)]">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-[#D4A853]/5 rounded-full blur-2xl"></div>
+<span class="text-body-sm font-bold uppercase tracking-wider text-text-secondary mb-1">Overall Match Score</span>
+<div class="flex items-baseline gap-1 font-mono-lg">
+<span class="text-display font-mono-lg text-[#D4A853]">82</span>
+<span class="text-headline-md font-mono-lg text-text-secondary">/100</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-body-sm font-bold uppercase tracking-wider text-success">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>+4% from last session</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid: Metric Score Cards -->
+<section>
+<div class="flex items-center gap-3 mb-md">
+<span class="material-symbols-outlined text-text-secondary">query_stats</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Core Competencies</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<div class="bg-[#141414] border border-[#2A2A2A] rounded-xl p-6 hover:border-[#D4A853]/50 transition-colors duration-300 flex flex-col group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-body-sm font-bold uppercase tracking-wider text-text-secondary tracking-wider">Technical Accuracy</span>
+<span class="material-symbols-outlined text-text-disabled group-hover:text-[#D4A853] transition-colors">code</span>
+</div>
+<div class="text-headline-lg font-mono-lg text-on-surface mb-6">88%</div>
+<div class="mt-auto">
+<div class="w-full bg-[#1C1C1C] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#D4A853] h-full rounded-full w-[88%]"></div>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-disabled mt-3">Strong system design logic. Minor syntax errors in algorithmic solution.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#141414] border border-[#2A2A2A] rounded-xl p-6 hover:border-[#D4A853]/50 transition-colors duration-300 flex flex-col group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-body-sm font-bold uppercase tracking-wider text-text-secondary tracking-wider">Communication</span>
+<span class="material-symbols-outlined text-text-disabled group-hover:text-[#D4A853] transition-colors">forum</span>
+</div>
+<div class="text-headline-lg font-mono-lg text-on-surface mb-6">75%</div>
+<div class="mt-auto">
+<div class="w-full bg-[#1C1C1C] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#D4A853]/70 h-full rounded-full w-[75%]"></div>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-disabled mt-3">Clear explanations, but tended to ramble on behavioral questions.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#141414] border border-[#2A2A2A] rounded-xl p-6 hover:border-[#D4A853]/50 transition-colors duration-300 flex flex-col group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-body-sm font-bold uppercase tracking-wider text-text-secondary tracking-wider">Problem Solving Speed</span>
+<span class="material-symbols-outlined text-text-disabled group-hover:text-[#D4A853] transition-colors">timer</span>
+</div>
+<div class="text-headline-lg font-mono-lg text-on-surface mb-6">92%</div>
+<div class="mt-auto">
+<div class="w-full bg-[#1C1C1C] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#D4A853] h-full rounded-full w-[92%]"></div>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-disabled mt-3">Excellent time to optimal solution. Quick identification of edge cases.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- STAR Method Breakdown -->
+<section class="border-t border-border-base pt-3xl">
+<div class="flex items-center justify-between mb-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-secondary">psychology</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Behavioral Analysis (STAR)</h2>
+</div>
+<span class="px-3 py-1 bg-surface-raised border border-border-base rounded-full text-body-sm font-bold uppercase tracking-wider text-text-secondary">Question 2 of 5</span>
+</div>
+<div class="bg-[#141414] border border-[#2A2A2A] rounded-xl overflow-hidden flex flex-col lg:flex-row">
+<!-- Left: Context & Transcript snippet -->
+<div class="p-6 lg:w-1/3 border-b lg:border-b-0 lg:border-r border-border-base bg-[#0D0D0D]/50">
+<h3 class="text-body-sm font-bold uppercase tracking-wider text-text-secondary mb-3">The Prompt</h3>
+<p class="text-body-sm font-body-sm text-[#e5e2e1] mb-6 italic">"Tell me about a time you had to disagree with a senior stakeholder on a technical architecture decision."</p>
+<h3 class="text-body-sm font-bold uppercase tracking-wider text-text-secondary mb-3 mt-md">AI Observation</h3>
+<div class="bg-[#1C1C1C] rounded p-4 border border-border-base text-body-sm font-body-sm text-text-secondary leading-relaxed">
+                            Your response was strong on technical details but lacked emphasis on the business impact of your decision. The 'Result' phase was rushed.
+                        </div>
+</div>
+<!-- Right: STAR Breakdown -->
+<div class="p-6 lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+<!-- Connecting lines behind (subtle) -->
+<div class="absolute left-1/2 top-6 bottom-6 w-px bg-border-base hidden md:block"></div>
+<div class="absolute top-1/2 left-6 right-6 h-px bg-border-base hidden md:block"></div>
+<!-- S -->
+<div class="relative bg-[#141414] p-4 rounded border border-border-base z-10 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-6 h-6 rounded bg-[#D4A853]/10 text-[#D4A853] flex items-center justify-center text-body-sm font-bold uppercase tracking-wider">S</span>
+<span class="text-body-sm font-bold uppercase tracking-wider text-[#e5e2e1]">Situation</span>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-secondary">Described the legacy monolithic migration project clearly. Context was well established.</p>
+</div>
+<!-- T -->
+<div class="relative bg-[#141414] p-4 rounded border border-border-base z-10 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-6 h-6 rounded bg-[#D4A853]/10 text-[#D4A853] flex items-center justify-center text-body-sm font-bold uppercase tracking-wider">T</span>
+<span class="text-body-sm font-bold uppercase tracking-wider text-[#e5e2e1]">Task</span>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-secondary">Outlined your responsibility to propose a microservices split. Good ownership shown.</p>
+</div>
+<!-- A -->
+<div class="relative bg-[#141414] p-4 rounded border border-[#D4A853]/50 z-10 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-6 h-6 rounded bg-[#D4A853] text-on-primary flex items-center justify-center text-body-sm font-bold uppercase tracking-wider">A</span>
+<span class="text-body-sm font-bold uppercase tracking-wider text-[#e5e2e1]">Action</span>
+</div>
+<p class="text-mono-sm font-mono-sm text-[#e5e2e1]">Strongest section. You detailed the exact steps taken to build a proof-of-concept to convince the stakeholder.</p>
+</div>
+<!-- R -->
+<div class="relative bg-[#141414] p-4 rounded border border-error/50 z-10 bg-error/5 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-6 h-6 rounded bg-error/20 text-error flex items-center justify-center text-body-sm font-bold uppercase tracking-wider">R</span>
+<span class="text-body-sm font-bold uppercase tracking-wider text-[#e5e2e1]">Result</span>
+</div>
+<p class="text-mono-sm font-mono-sm text-text-secondary">Needs improvement. You mentioned "we shipped it," but failed to quantify the performance gains or engineering hours saved.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical / Code Feedback -->
+<section class="border-t border-border-base pt-3xl">
+<div class="flex items-center gap-3 mb-xl">
+<span class="material-symbols-outlined text-text-secondary">terminal</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Technical Review</h2>
+</div>
+<div class="bg-code-bg border border-border-base rounded-xl overflow-hidden flex flex-col md:flex-row">
+<!-- Code Block -->
+<div class="md:w-3/5 p-4 md:p-6 overflow-x-auto custom-scrollbar border-b md:border-b-0 md:border-r border-border-base relative">
+<!-- macOS style window controls just for aesthetic -->
+<div class="flex gap-2 mb-4">
+<div class="w-3 h-3 rounded-full bg-border-base"></div>
+<div class="w-3 h-3 rounded-full bg-border-base"></div>
+<div class="w-3 h-3 rounded-full bg-border-base"></div>
+</div>
+<pre class="text-mono-sm font-mono-sm text-text-secondary leading-relaxed"><span class="text-purple-400">function</span> <span class="text-blue-400">findKthLargest</span>(nums, k) {
+  <span class="text-text-disabled italic">// Initial approach: Sort and pick</span>
+  nums.<span class="text-blue-400">sort</span>((a, b) =&gt; b - a);
+  <span class="text-purple-400">return</span> nums[k - <span class="text-orange-400">1</span>];
+}
+
+<span class="text-text-disabled italic">/* AI Note: 
+ * O(N log N) time complexity. 
+ * Acceptable for initial thought, 
+ * but a Min-Heap or QuickSelect 
+ * is expected for optimal O(N) time.
+ */</span>
+                        </pre>
+</div>
+<!-- Feedback sidebar -->
+<div class="md:w-2/5 bg-[#141414] p-6 flex flex-col gap-4">
+<h3 class="text-body-sm font-bold uppercase tracking-wider text-text-secondary border-b border-border-base pb-2">Optimization Feedback</h3>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-error mt-0.5 text-[20px]">warning</span>
+<div>
+<p class="text-body-sm font-body-sm text-on-surface mb-1">Sub-optimal Time Complexity</p>
+<p class="text-mono-sm font-mono-sm text-text-disabled">Sorting takes O(N log N). The interviewer explicitly asked if it could be done faster.</p>
+</div>
+</div>
+<div class="flex gap-3 mt-2">
+<span class="material-symbols-outlined text-[#D4A853] mt-0.5 text-[20px]">lightbulb</span>
+<div>
+<p class="text-body-sm font-body-sm text-on-surface mb-1">Recommended Approach</p>
+<p class="text-mono-sm font-mono-sm text-text-disabled">Implement QuickSelect for average O(N) time, or use a Min-Heap of size K for O(N log K).</p>
+</div>
+</div>
+<button class="mt-auto self-start px-4 py-2 bg-transparent border border-border-base hover:bg-surface-raised rounded text-body-sm font-bold uppercase tracking-wider text-on-surface transition-colors">
+                            Review Optimal Solutions
+                        </button>
+</div>
+</div>
+</section>
+<!-- Actionable Tips -->
+<section class="border-t border-border-base pt-3xl pb-3xl">
+<div class="flex items-center gap-3 mb-xl">
+<span class="material-symbols-outlined text-text-secondary">track_changes</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Action Plan</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex items-start gap-4 p-4 rounded-lg bg-[#1C1C1C] border border-[#2A2A2A] hover:border-[#D4A853]/50 transition-colors">
+<div class="w-8 h-8 rounded bg-[#141414] flex items-center justify-center shrink-0 border border-[#2A2A2A]">
+<span class="text-body-sm font-bold uppercase tracking-wider text-[#D4A853]">1</span>
+</div>
+<div>
+<h3 class="text-body-sm font-body-sm text-on-surface font-medium mb-1">Quantify your results</h3>
+<p class="text-body-sm font-body-sm text-text-secondary">In behavioral answers, always attach numbers to your impact (e.g., "reduced latency by 200ms" instead of "made it faster").</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-lg bg-[#1C1C1C] border border-[#2A2A2A] hover:border-[#D4A853]/50 transition-colors">
+<div class="w-8 h-8 rounded bg-[#141414] flex items-center justify-center shrink-0 border border-[#2A2A2A]">
+<span class="text-body-sm font-bold uppercase tracking-wider text-[#D4A853]">2</span>
+</div>
+<div>
+<h3 class="text-body-sm font-body-sm text-on-surface font-medium mb-1">Review Heap Data Structures</h3>
+<p class="text-body-sm font-body-sm text-text-secondary">Your comfort with arrays is solid, but you missed an opportunity to optimize using a priority queue/heap.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-lg bg-[#1C1C1C] border border-[#2A2A2A] hover:border-[#D4A853]/50 transition-colors">
+<div class="w-8 h-8 rounded bg-[#141414] flex items-center justify-center shrink-0 border border-[#2A2A2A]">
+<span class="text-body-sm font-bold uppercase tracking-wider text-[#D4A853]">3</span>
+</div>
+<div>
+<h3 class="text-body-sm font-body-sm text-on-surface font-medium mb-1">Pause before coding</h3>
+<p class="text-body-sm font-body-sm text-text-secondary">Take an extra 30 seconds to verbally outline your pseudo-code approach before typing to ensure the interviewer agrees with your direction.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

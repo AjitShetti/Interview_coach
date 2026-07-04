@@ -9,11 +9,19 @@ wheels/
 # Virtual environments
 .venv
 
-# .env file
+# Environment variables
 .env
 
-#test File
-#test_setup.py
+# Audio test files
+*.wav
+*.mp3
+
+# Lock files (regenerated from pyproject.toml)
 uv.lock
 
+# Local utility scripts
 models_available.py
+
+# Data / vector store
+data/
+chroma_db/

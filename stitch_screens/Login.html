@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interview Coach - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container": "#201f1f",
+                "on-surface": "#e5e2e1",
+                "surface-variant": "#353534",
+                "primary-fixed-dim": "#eec068",
+                "on-tertiary-fixed-variant": "#474646",
+                "surface-dim": "#131313",
+                "on-primary-container": "#573d00",
+                "secondary-fixed-dim": "#cac6bd",
+                "secondary-container": "#4b4942",
+                "on-secondary-fixed-variant": "#494740",
+                "primary-container": "#d4a853",
+                "on-primary-fixed": "#271900",
+                "border-subtle": "#1E1E1E",
+                "on-primary-fixed-variant": "#5d4200",
+                "error": "#B85C5C",
+                "on-secondary-fixed": "#1d1c16",
+                "primary": "#f2c36b",
+                "surface-raised": "#1C1C1C",
+                "on-primary": "#412d00",
+                "surface-container-lowest": "#0e0e0e",
+                "border-base": "#2A2A2A",
+                "surface-tint": "#eec068",
+                "error-container": "#93000a",
+                "surface-container-high": "#2a2a2a",
+                "surface-container-low": "#1c1b1b",
+                "secondary": "#cac6bd",
+                "outline-variant": "#4e4637",
+                "accent-hover": "#C49840",
+                "primary-fixed": "#ffdea6",
+                "text-secondary": "#8A8277",
+                "secondary-fixed": "#e7e2d8",
+                "text-disabled": "#4A4744",
+                "outline": "#9b8f7e",
+                "code-bg": "#111111",
+                "warning": "#A87B3A",
+                "tertiary-container": "#b0aeae",
+                "on-tertiary-container": "#424242",
+                "tertiary-fixed-dim": "#c8c6c5",
+                "success": "#4A9B6F",
+                "on-tertiary": "#313030",
+                "background": "#131313",
+                "tertiary-fixed": "#e5e2e1",
+                "tertiary": "#ccc9c9",
+                "on-tertiary-fixed": "#1c1b1b",
+                "on-surface-variant": "#d2c5b2",
+                "on-secondary": "#32302a",
+                "surface-bright": "#3a3939",
+                "inverse-on-surface": "#313030",
+                "on-error": "#690005",
+                "on-secondary-container": "#bcb8af",
+                "inverse-primary": "#7b5804",
+                "surface-container-highest": "#353534",
+                "surface": "#131313",
+                "on-background": "#e5e2e1",
+                "on-error-container": "#ffdad6",
+                "inverse-surface": "#e5e2e1",
+                "accent-subtle": "#2A2215"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "md": "16px",
+                "max-width": "1120px",
+                "gutter-mobile": "24px",
+                "3xl": "64px",
+                "xs": "4px",
+                "lg": "24px",
+                "xl": "32px",
+                "5xl": "128px",
+                "sm": "8px",
+                "gutter-desktop": "48px",
+                "2xl": "48px",
+                "4xl": "96px"
+        },
+        "fontFamily": {
+                "body-sm": [
+                        "DM Sans"
+                ],
+                "display": [
+                        "Instrument Serif"
+                ],
+                "headline-sm": [
+                        "DM Sans"
+                ],
+                "headline-md": [
+                        "Instrument Serif"
+                ],
+                "body-lg": [
+                        "DM Sans"
+                ],
+                "body": [
+                        "DM Sans"
+                ],
+                "headline-lg": [
+                        "Instrument Serif"
+                ],
+                "mono-sm": [
+                        "JetBrains Mono"
+                ],
+                "display-mobile": [
+                        "Instrument Serif"
+                ],
+                "mono-lg": [
+                        "JetBrains Mono"
+                ]
+        },
+        "fontSize": {
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "72px",
+                        {
+                                "lineHeight": "1.05",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "22px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.7",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body": [
+                        "16px",
+                        {
+                                "lineHeight": "1.65",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            background-color: #0D0D0D;
+            color: #F0EBE1;
+        }
+        
+        .auth-card {
+            background-color: #141414;
+            border: 1px solid #2A2A2A;
+            border-radius: 8px;
+        }
+
+        .auth-input {
+            background-color: #141414;
+            border: 1px solid #2A2A2A;
+            color: #F0EBE1;
+            transition: all 0.2s ease;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: #D4A853;
+            box-shadow: 0 0 0 1px #D4A853;
+        }
+
+        .auth-btn-primary {
+            background-color: #D4A853;
+            color: #271900;
+            border-radius: 4px;
+            transition: transform 0.1s ease;
+        }
+
+        .auth-btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .auth-btn-secondary {
+            background-color: transparent;
+            border: 1px solid #2A2A2A;
+            color: #F0EBE1;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .auth-btn-secondary:hover {
+            background-color: #1C1C1C;
+        }
+        
+        .auth-btn-secondary:active {
+            transform: scale(0.98);
+        }
+        
+        /* Subtle glowing background effect */
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.05) 0%, rgba(13, 13, 13, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative overflow-hidden font-body text-body">
+<div class="bg-glow"></div>
+<main class="w-full max-w-md px-gutter-mobile relative z-10">
+<!-- Logo / Branding Header -->
+<div class="text-center mb-xl">
+<h1 class="font-headline-lg text-headline-lg text-[#F0EBE1] tracking-tight mb-xs">Interview Coach</h1>
+<p class="font-body text-body text-text-secondary">Premium AI-Powered Interview Preparation</p>
+</div>
+<!-- Auth Card -->
+<div class="auth-card p-lg shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+<div class="flex items-center justify-between mb-md border-b border-border-base pb-sm">
+<h2 class="font-headline-md text-headline-md text-[#F0EBE1]">Sign In</h2>
+<span class="font-mono-sm text-mono-sm text-text-secondary uppercase">Secure Access</span>
+</div>
+<form class="space-y-md" onsubmit="event.preventDefault();">
+<!-- Email Input -->
+<div class="space-y-xs">
+<label class="block font-mono-sm text-mono-sm text-[#8A8277]" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" style="font-variation-settings: 'FILL' 0;">mail</span>
+<input class="auth-input w-full py-2 pl-10 pr-3 font-body text-body rounded-md" id="email" name="email" placeholder="name@company.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="block font-mono-sm text-mono-sm text-[#8A8277]" for="password">Password</label>
+<a class="font-body-sm text-body-sm text-text-secondary hover:text-primary-container transition-colors" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" style="font-variation-settings: 'FILL' 0;">lock</span>
+<input class="auth-input w-full py-2 pl-10 pr-3 font-body text-body rounded-md" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="auth-btn-primary w-full py-3 font-body text-body font-medium flex items-center justify-center gap-2 mt-md" type="submit">
+                    Sign In
+                    <span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span>
+</button>
+</form>
+<div class="mt-lg relative flex items-center justify-center">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-border-base"></div>
+</div>
+<div class="relative bg-[#141414] px-4 font-mono-sm text-mono-sm text-text-secondary">
+                    OR CONTINUE WITH
+                </div>
+</div>
+<div class="mt-md flex gap-sm">
+<button class="auth-btn-secondary flex-1 py-2 flex items-center justify-center gap-2 font-body-sm text-body-sm" type="button">
+<span class="material-symbols-outlined" style="font-size: 18px;">business</span>
+                    SSO
+                </button>
+<button class="auth-btn-secondary flex-1 py-2 flex items-center justify-center gap-2 font-body-sm text-body-sm" type="button">
+<span class="material-symbols-outlined" style="font-size: 18px;">account_circle</span>
+                    Google
+                </button>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="text-center mt-md">
+<p class="font-body-sm text-body-sm text-text-secondary">
+                Don't have an account? 
+                <a class="text-primary-container hover:text-[#F0EBE1] transition-colors" href="#">Request Access</a>
+</p>
+</div>
+</main>
+<script>
+        // Simple input focus styling script to ensure reliable focus states
+        document.querySelectorAll('.auth-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.querySelector('.material-symbols-outlined').style.color = '#D4A853';
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.querySelector('.material-symbols-outlined').style.color = '#8A8277';
+            });
+        });
+    </script>
+</body></html>

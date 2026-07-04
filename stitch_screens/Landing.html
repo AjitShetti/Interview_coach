@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interview Coach - Master Your Next Interview with AI</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container": "#201f1f",
+                "on-surface": "#e5e2e1",
+                "surface-variant": "#353534",
+                "primary-fixed-dim": "#eec068",
+                "on-tertiary-fixed-variant": "#474646",
+                "surface-dim": "#131313",
+                "on-primary-container": "#573d00",
+                "secondary-fixed-dim": "#cac6bd",
+                "secondary-container": "#4b4942",
+                "on-secondary-fixed-variant": "#494740",
+                "primary-container": "#d4a853",
+                "on-primary-fixed": "#271900",
+                "border-subtle": "#1E1E1E",
+                "on-primary-fixed-variant": "#5d4200",
+                "error": "#B85C5C",
+                "on-secondary-fixed": "#1d1c16",
+                "primary": "#f2c36b",
+                "surface-raised": "#1C1C1C",
+                "on-primary": "#412d00",
+                "surface-container-lowest": "#0e0e0e",
+                "border-base": "#2A2A2A",
+                "surface-tint": "#eec068",
+                "error-container": "#93000a",
+                "surface-container-high": "#2a2a2a",
+                "surface-container-low": "#1c1b1b",
+                "secondary": "#cac6bd",
+                "outline-variant": "#4e4637",
+                "accent-hover": "#C49840",
+                "primary-fixed": "#ffdea6",
+                "text-secondary": "#8A8277",
+                "secondary-fixed": "#e7e2d8",
+                "text-disabled": "#4A4744",
+                "outline": "#9b8f7e",
+                "code-bg": "#111111",
+                "warning": "#A87B3A",
+                "tertiary-container": "#b0aeae",
+                "on-tertiary-container": "#424242",
+                "tertiary-fixed-dim": "#c8c6c5",
+                "success": "#4A9B6F",
+                "on-tertiary": "#313030",
+                "background": "#0D0D0D",
+                "tertiary-fixed": "#e5e2e1",
+                "tertiary": "#ccc9c9",
+                "on-tertiary-fixed": "#1c1b1b",
+                "on-surface-variant": "#d2c5b2",
+                "on-secondary": "#32302a",
+                "surface-bright": "#3a3939",
+                "inverse-on-surface": "#313030",
+                "on-error": "#690005",
+                "on-secondary-container": "#bcb8af",
+                "inverse-primary": "#7b5804",
+                "surface-container-highest": "#353534",
+                "surface": "#131313",
+                "on-background": "#e5e2e1",
+                "on-error-container": "#ffdad6",
+                "inverse-surface": "#e5e2e1",
+                "accent-subtle": "#2A2215",
+                "text-primary": "#F0EBE1"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "md": "16px",
+                "max-width": "1120px",
+                "gutter-mobile": "24px",
+                "3xl": "64px",
+                "xs": "4px",
+                "lg": "24px",
+                "xl": "32px",
+                "5xl": "128px",
+                "sm": "8px",
+                "gutter-desktop": "48px",
+                "2xl": "48px",
+                "4xl": "96px"
+        },
+        "fontFamily": {
+                "body-sm": [
+                        "DM Sans"
+                ],
+                "display": [
+                        "Instrument Serif"
+                ],
+                "headline-sm": [
+                        "DM Sans"
+                ],
+                "headline-md": [
+                        "Instrument Serif"
+                ],
+                "body-lg": [
+                        "DM Sans"
+                ],
+                "body": [
+                        "DM Sans"
+                ],
+                "headline-lg": [
+                        "Instrument Serif"
+                ],
+                "mono-sm": [
+                        "JetBrains Mono"
+                ],
+                "display-mobile": [
+                        "Instrument Serif"
+                ],
+                "mono-lg": [
+                        "JetBrains Mono"
+                ]
+        },
+        "fontSize": {
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "72px",
+                        {
+                                "lineHeight": "1.05",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "22px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.7",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body": [
+                        "16px",
+                        {
+                                "lineHeight": "1.65",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "mono-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .grid-pattern {
+            background-image: linear-gradient(to right, rgba(42, 42, 42, 0.3) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(42, 42, 42, 0.3) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary min-h-screen font-body antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation (JSON Applied) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-6 py-4 bg-background/80 backdrop-blur-md border-b border-border-base transition-all duration-300" id="top-nav">
+<div class="flex items-center gap-md">
+<!-- Brand Logo -->
+<a class="text-headline-sm font-headline-sm tracking-tight text-text-primary flex items-center gap-xs hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-primary-container" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+                Interview Coach
+            </a>
+</div>
+<!-- Trailing Actions (From JSON) -->
+<div class="flex items-center gap-md">
+<button class="text-text-secondary hover:text-primary transition-colors duration-200 flex items-center justify-center p-xs rounded-full hover:bg-surface-raised active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-text-secondary hover:text-primary transition-colors duration-200 flex items-center justify-center p-xs rounded-full hover:bg-surface-raised active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<!-- Login CTA for Landing Page context, keeping minimal -->
+<button class="hidden md:flex ml-sm bg-transparent border border-border-base text-text-primary hover:bg-surface-raised font-body-sm text-body-sm px-4 py-2 rounded transition-all duration-200 active:scale-[0.98]">
+                Log In
+            </button>
+</div>
+</header>
+<main class="relative">
+<!-- Ambient Background Glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-primary-container/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<!-- Hero Section -->
+<section class="max-w-max-width mx-auto px-gutter-desktop pt-24 pb-4xl flex flex-col items-center text-center relative z-10 grid-pattern min-h-[716px] justify-center border-b border-border-base">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-base bg-surface-raised mb-xl shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-body-sm text-body-sm text-text-secondary">GPT-4 Powered Intelligence</span>
+</div>
+<h1 class="font-display text-display text-text-primary mb-md max-w-4xl">
+                Master Your Next Interview with AI
+            </h1>
+<p class="font-body-lg text-body-lg text-text-secondary mb-xl max-w-2xl">
+                Experience highly realistic, technical, and behavioral interview simulations. Get immediate, actionable feedback on your tone, structure, and technical accuracy to land your dream role.
+            </p>
+<div class="flex flex-col sm:flex-row items-center gap-md">
+<button class="bg-primary-container text-on-primary-container font-body-sm text-body-sm px-8 py-4 rounded-lg hover:bg-accent-hover transition-colors duration-200 active:scale-[0.98] flex items-center gap-2 shadow-[0_0_20px_rgba(212,168,83,0.15)]">
+                    Start Practicing
+                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="bg-transparent border border-border-base text-text-primary hover:bg-surface-raised font-body-sm text-body-sm px-8 py-4 rounded-lg transition-all duration-200 active:scale-[0.98] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="play_circle">play_circle</span>
+                    Watch Demo
+                </button>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="max-w-max-width mx-auto px-gutter-desktop py-4xl">
+<div class="mb-xl text-center">
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Precision Training Modules</h2>
+<p class="font-body text-body text-text-secondary mt-xs">Tailored environments for every stage of the hiring process.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Feature 1: Voice AI (Tall Card) -->
+<div class="bg-surface border border-border-base rounded-lg p-8 flex flex-col group hover:border-outline transition-colors duration-300 relative overflow-hidden md:col-span-4 md:row-span-2">
+<div class="absolute inset-0 bg-gradient-to-b from-surface-raised/50 to-transparent opacity-50 z-0"></div>
+<div class="relative z-10 flex-1">
+<div class="w-12 h-12 rounded-lg bg-surface-raised border border-border-base flex items-center justify-center mb-md group-hover:bg-accent-subtle transition-colors duration-300">
+<span class="material-symbols-outlined text-primary-container" data-icon="record_voice_over">record_voice_over</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-sm">Conversational Voice AI</h3>
+<p class="font-body text-body text-text-secondary mb-xl">
+                            Engage in fluid, real-time voice conversations. Our AI detects hesitation, assesses your tone, and evaluates the clarity of your spoken responses just like a human recruiter.
+                        </p>
+</div>
+<!-- Decorative Visual -->
+<div class="relative z-10 w-full h-32 mt-auto border-t border-border-base pt-4 flex items-end justify-between gap-1 opacity-60">
+<div class="w-full bg-border-base rounded-t-sm h-[20%] animate-[pulse_2s_ease-in-out_infinite]"></div>
+<div class="w-full bg-border-base rounded-t-sm h-[60%] animate-[pulse_2.5s_ease-in-out_infinite]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[100%] shadow-[0_0_10px_rgba(212,168,83,0.3)]"></div>
+<div class="w-full bg-border-base rounded-t-sm h-[40%] animate-[pulse_3s_ease-in-out_infinite]"></div>
+<div class="w-full bg-border-base rounded-t-sm h-[70%] animate-[pulse_2.2s_ease-in-out_infinite]"></div>
+<div class="w-full bg-border-base rounded-t-sm h-[30%] animate-[pulse_2.8s_ease-in-out_infinite]"></div>
+</div>
+</div>
+<!-- Feature 2: Technical Coding (Wide Card) -->
+<div class="md:col-span-8 bg-surface border border-border-base rounded-lg p-8 flex flex-col md:flex-row gap-lg group hover:border-outline transition-colors duration-300 items-center overflow-hidden relative">
+<div class="flex-1 relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-raised border border-border-base flex items-center justify-center mb-md group-hover:bg-accent-subtle transition-colors duration-300">
+<span class="material-symbols-outlined text-primary-container" data-icon="terminal">terminal</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-sm">Technical Coding Interviews</h3>
+<p class="font-body text-body text-text-secondary">
+                            Tackle algorithmic challenges in an integrated IDE. The AI acts as a collaborative interviewer, offering hints when you're stuck and evaluating your time/space complexity tradeoffs.
+                        </p>
+</div>
+<!-- Code Snippet Visual -->
+<div class="flex-1 w-full bg-code-bg border border-border-base rounded-lg p-4 font-mono-sm text-mono-sm text-text-secondary shadow-inner relative z-10">
+<div class="flex items-center gap-2 mb-2 border-b border-border-base pb-2">
+<div class="w-2 h-2 rounded-full bg-border-base"></div>
+<div class="w-2 h-2 rounded-full bg-border-base"></div>
+<div class="w-2 h-2 rounded-full bg-border-base"></div>
+<span class="text-[10px] ml-2">solution.py</span>
+</div>
+<div class="text-primary-container inline">def</div> <div class="inline text-text-primary">two_sum(nums, target):</div><br/>
+                            <div class="inline text-text-secondary"># AI: Good choice using a hash map</div><br/>
+                            seen = {}<br/>
+                            <div class="inline text-primary-container">for</div> i, num <div class="inline text-primary-container">in</div> enumerate(nums):<br/>
+                                diff = target - num<br/>
+                                <div class="inline text-primary-container">if</div> diff <div class="inline text-primary-container">in</div> seen:<br/>
+                                    <div class="inline text-primary-container">return</div> [seen[diff], i]
+                    </div>
+</div>
+<!-- Feature 3: STAR Method (Wide Card) -->
+<div class="md:col-span-8 bg-surface border border-border-base rounded-lg p-8 flex flex-col justify-between group hover:border-outline transition-colors duration-300 relative overflow-hidden">
+<!-- Subtle background icon -->
+<span class="material-symbols-outlined absolute -right-8 -bottom-8 text-[120px] text-surface-raised opacity-40 pointer-events-none" data-icon="psychology">psychology</span>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-raised border border-border-base flex items-center justify-center mb-md group-hover:bg-accent-subtle transition-colors duration-300">
+<span class="material-symbols-outlined text-primary-container" data-icon="analytics">analytics</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-sm">STAR Method Analytics</h3>
+<p class="font-body text-body text-text-secondary max-w-lg mb-md">
+                            Stop rambling. Our NLP engine breaks down your behavioral answers into Situation, Task, Action, and Result components, scoring you on narrative coherence and impact.
+                        </p>
+</div>
+<div class="flex gap-2 mt-auto relative z-10 flex-wrap">
+<span class="px-3 py-1 bg-surface-raised border border-border-base rounded font-body-sm text-body-sm text-text-secondary">Situation Detected</span>
+<span class="px-3 py-1 bg-surface-raised border border-border-base rounded font-body-sm text-body-sm text-text-secondary">Action Highlighted</span>
+<span class="px-3 py-1 bg-surface-raised border-border-base text-primary-container rounded font-body-sm text-body-sm shadow-[0_0_8px_rgba(212,168,83,0.1)] border">Result Missing</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-border-base py-8 mt-2xl bg-background text-center">
+<p class="font-body-sm text-body-sm text-text-disabled">© 2024 Interview Coach. VoiceCoach Design System.</p>
+</footer>
+<script>
+        // Simple script to add slight background shadow to header on scroll for depth
+        const header = document.getElementById('top-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-[0_4px_30px_rgba(0,0,0,0.5)]');
+            } else {
+                header.classList.remove('shadow-[0_4px_30px_rgba(0,0,0,0.5)]');
+            }
+        });
+    </script>
+</body></html>
